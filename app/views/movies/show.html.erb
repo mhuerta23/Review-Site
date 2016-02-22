@@ -4,17 +4,13 @@
       <div class="col-md-4">
         <%= image_tag @movie.image.url(:medium) %>
         <div class="star-rating" data-score= <%= @avg_review %> ></div>
-        <em><%= "#{@reviews.length} reviews" %></em>
+        <em><%= @hit %></em>
         <div class="table-responsive">
           <table class="table">
             <tbody>
               <tr>
                 <td><strong>Title:</strong></td>
                 <td><%= @movie.title %></td>
-              </tr>
-              <tr>
-                <td><strong>Description:</strong></td>
-                <td><%= @movie.description %></td>
               </tr>
               <tr>
                 <td><strong>Movie length:</strong></td>
@@ -30,12 +26,14 @@
               </tr>
             </tbody>
           </table>
-          <%= link_to "Write a Review", new_movie_review_path(@movie) %>
+            <%= link_to 'Edit Info', edit_movie_path(@movie) %> |
+            <%= link_to 'Back', movies_path %>
         </div>
       </div>
       <div class="col-md-7 col-md-offset-1">
         <h1 class="review_title"><%= @movie.title %></h1>
         <p><%= @movie.description %></p>
+        <%= link_to "Write a Review", new_movie_review_path(@movie) %>
 
         <% if @reviews.blank? %>
           <h3>No reviews yet, be the first!</h3>
@@ -45,6 +43,7 @@
             <div class="reviews">
               <div class="star-rating" data-score= <%= review.rating %> ></div>
               <p><%= review.comment %></p>
+              
             </div>
           <% end %>
         <% end %>
@@ -53,8 +52,6 @@
   </div>
 </div>
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
 
 <script>
     $('.star-rating').raty({

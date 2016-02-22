@@ -24,6 +24,14 @@ class MoviesController < ApplicationController
     else
       @avg_review = @reviews.average(:rating).round(2)
     end
+
+     if @avg_review >= 3.5
+      @hit = 'Super Effective!'
+
+    else
+      @hit = 'Not Very Effective!'
+
+    end
   end
 
   # GET /movies/new
