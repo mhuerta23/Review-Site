@@ -730,7 +730,7 @@
     click        : undefined,
     half         : false,
     halfShow     : true,
-    hints        : ['bad', 'poor', 'regular', 'good', 'gorgeous'],
+    hints        : ['Not Very Effective...', 'Bad Hit', 'Good Hit', 'Critical Hit', 'Super Effective!'],
     iconRange    : undefined,
     mouseout     : undefined,
     mouseover    : undefined,
