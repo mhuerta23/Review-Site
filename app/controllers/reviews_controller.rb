@@ -10,7 +10,8 @@ class ReviewsController < ApplicationController
   end
 
   # GET /reviews/1/edit
-  def edit
+  def edit      
+    @review = @movie.reviews.find(params[:id])
   end
 
   # POST /reviews
@@ -33,9 +34,11 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
+    @review = @movie.reviews.find(params[:id])
     respond_to do |format|
+
       if @review.update(review_params)
-        format.html { redirect_to @movie, notice: 'Review was successfully updated.' }
+        format.html { redirect_to movies_path, notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
         render "new"
@@ -65,6 +68,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:rating, :comment)
+      params.require(:review).permit(:rating, :comment, :movie_id, :rating, :review)
     end
 end

@@ -21,29 +21,34 @@
                 <td><%= @movie.director %></td>
               </tr>
               <tr>
-                <td><strong>Rating:</strong></td>
+                <td><strong>Rated:</strong></td>
                 <td><%= @movie.rating %></td>
               </tr>
             </tbody>
           </table>
-            <%= link_to 'Edit Info', edit_movie_path(@movie) %> |
+            <%= link_to 'Edit Movie Info', edit_movie_path(@movie) %> |
             <%= link_to 'Back', movies_path %>
+
         </div>
       </div>
       <div class="col-md-7 col-md-offset-1">
         <h1 class="review_title"><%= @movie.title %></h1>
         <p><%= @movie.description %></p>
         <%= link_to "Write a Review", new_movie_review_path(@movie) %>
+      
 
         <% if @reviews.blank? %>
           <h3>No reviews yet, be the first!</h3>
           <%= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
+
+
         <% else %>
           <% @reviews.each do |review| %>
             <div class="reviews">
               <div class="star-rating" data-score= <%= review.rating %> ></div>
               <p><%= review.comment %></p>
-              
+              <%= link_to "Edit Review", edit_movie_review_path(@movie, review) %>
+
             </div>
           <% end %>
         <% end %>
