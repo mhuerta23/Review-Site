@@ -22,11 +22,14 @@ class ReviewsController < ApplicationController
     @review.movie_id = @movie.id
 
     respond_to do |format|
-      if @review.save
+      if @review.rating == nil
+        
+        format.html { redirect_to @movie, notice: 'You must add stars to reviews!'}
+        format.json { render json: @review.errors, status: :unprocessable_entity }
+      else
+        @review.save
         format.html { redirect_to @movie, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
-      else
-        render "new"
       end
     end
   end
@@ -41,7 +44,8 @@ class ReviewsController < ApplicationController
         format.html { redirect_to movies_path, notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
-        render "new"
+        format.html { render :new }
+        format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
   end

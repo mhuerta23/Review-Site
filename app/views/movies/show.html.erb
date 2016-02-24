@@ -24,6 +24,10 @@
                 <td><strong>Rated:</strong></td>
                 <td><%= @movie.rating %></td>
               </tr>
+              <tr>
+                <td><strong>Genre:</strong></td>
+                <td><%= @movie.genre %></td>
+              </tr>
             </tbody>
           </table>
             <%= link_to 'Edit Movie Info', edit_movie_path(@movie) %> |
